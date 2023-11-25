@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Live Streaming</title>
+    <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet"/>
+</head>
+<body>
+
+<video id="Video" class="video-js vjs-default-skin" height="360" width="640" loop autoplay controls preload="none">
+    <source th:src="'http://localhost:8080/video/chunk/' + ${id}" type="video/mp4"/>
+</video>
+
+<script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+<script>
+    var player = videojs('Video');
+    player.play();
+</script>
+<script>
+    var v = document.getElementById("Video");
+
+    v.ontimeupdate = function ()
+    {
+        localStorage.setItem('time', this.currentTime);
+    };
+
+    window.onload = function()
+    {
+        let time = localStorage.getItem('time');
+        if (time)
+        {
+            setCurTime(time);
+        }
+    };
+
+    function setCurTime(time)
+    {
+        v.currentTime = time;
+    }
+</script>
+</body>
+</html>
