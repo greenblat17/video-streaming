@@ -42,4 +42,4 @@ request
 
 ### Streaming video
 
-<img alt="Video Streaming" src="docs/video.png">
+<img alt="Video Streaming" src="docs/stream.JPG">
