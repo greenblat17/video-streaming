@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>RBI</title>
@@ -14,6 +14,17 @@
         </label><br>
         <input type="submit" name="Save">
     </form>
+
+    <br>
+
+    <div th:if="${!id.isEmpty()}">
+        <span th:text="'You added video with uuid: ' + ${id}"></span>
+        <br>
+        <a th:href="@{'~/player/stream/' + ${id}}">
+            <span>Watch</span>
+        </a>
+
+    </div>
 </div>
 
 </body>

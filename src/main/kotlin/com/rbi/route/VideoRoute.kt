@@ -32,7 +32,8 @@ fun Route.videoRouting() {
     route("/video") {
 
         get("/upload") {
-            call.respond(ThymeleafContent("upload", model = emptyMap()))
+            val uuid = call.parameters.get("uuid").orEmpty()
+            call.respond(ThymeleafContent("upload", model = mapOf("id" to uuid)))
         }
 
         get("/full/{uuid}") {
@@ -77,7 +78,8 @@ fun Route.videoRouting() {
             val part = form.readPart()
 
             if (part is PartData.FileItem) {
-                call.respondRedirect("/video/upload")
+                val id = videoService.save(part)
+                call.respondRedirect("/video/upload?uuid=$id")
             } else {
                 call.respond(ThymeleafContent("error", model = emptyMap()))
             }
