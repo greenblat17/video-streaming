@@ -13,6 +13,7 @@ class FileMetadataRepositoryImpl : FileMetadataRepository {
     private fun resultRowToEntity(row: ResultRow) = FileMetadataEntity(
         id = row[FileMetadata.id],
         size = row[FileMetadata.size].toLong(),
+        extension = row[FileMetadata.extension],
         httpContentType = row[FileMetadata.httpContentType],
     )
 
@@ -26,6 +27,7 @@ class FileMetadataRepositoryImpl : FileMetadataRepository {
         val insertStatement = FileMetadata.insert {
             it[id] = fileMetadataEntity.id
             it[size] = fileMetadataEntity.size.toInt()
+            it[extension] = fileMetadataEntity.extension
             it[httpContentType] = fileMetadataEntity.httpContentType
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToEntity)!!
