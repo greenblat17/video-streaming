@@ -6,6 +6,7 @@ import com.rbi.model.FileMetadataEntity
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.selectAll
 import java.util.*
 
 class FileMetadataRepositoryImpl : FileMetadataRepository {
@@ -33,6 +34,10 @@ class FileMetadataRepositoryImpl : FileMetadataRepository {
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRowToEntity)!!
     }
 
+    override suspend fun findALl(): List<FileMetadataEntity?> = dbQuery {
+        FileMetadata.selectAll()
+            .map(::resultRowToEntity)
+    }
 
 
 }
