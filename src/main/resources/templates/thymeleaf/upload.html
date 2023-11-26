@@ -6,26 +6,27 @@
 </head>
 <body>
 
-<div>
-    <h3>Upload Video</h3>
-    <form action="/video" method="post" enctype="multipart/form-data">
-        <label for="video"> Video:
-            <input id="video" type="file" name="video" accept="video/mp4">
-        </label><br>
-        <input type="submit" name="Save">
-    </form>
+<h3>Upload Video</h3>
+<form action="/video" method="post" enctype="multipart/form-data">
+    <label for="video"> Video:
+        <input id="video" type="file" name="video" accept="video/mp4">
+    </label><br>
+    <input type="submit" name="Save">
+</form>
 
+<br>
+
+<div th:if="${!id.isEmpty()}">
+    <span th:text="'You added video with uuid: ' + ${id}"></span>
     <br>
-
-    <div th:if="${!id.isEmpty()}">
-        <span th:text="'You added video with uuid: ' + ${id}"></span>
-        <br>
-        <a th:href="@{'~/player/stream/' + ${id}}">
-            <span>Watch</span>
-        </a>
-
-    </div>
+    <a th:href="@{'~/player/stream/' + ${id}}">
+        <span>Watch</span>
+    </a>
 </div>
+
+<br>
+
+<a href="/video/list">List of uploaded videos</a>
 
 </body>
 </html>

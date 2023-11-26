@@ -31,6 +31,11 @@ fun Route.videoRouting() {
 
     route("/video") {
 
+        get("/list") {
+            val files = videoService.getAllFiles()
+            call.respond(ThymeleafContent("list", model = mapOf("files" to files)))
+        }
+
         get("/upload") {
             val uuid = call.parameters.get("uuid").orEmpty()
             call.respond(ThymeleafContent("upload", model = mapOf("id" to uuid)))

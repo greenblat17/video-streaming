@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>RBI</title>
+</head>
+<body>
+
+<h1>Files</h1>
+
+<span th:if="${files.isEmpty()}">You haven't uploaded any files yet</span>
+
+<div th:each="file : ${files}">
+  <a th:href="@{'~/player/stream/' + ${file}}" th:text="${file}">NAME</a>
+  <br>
+</div>
+
+</body>
+</html>
