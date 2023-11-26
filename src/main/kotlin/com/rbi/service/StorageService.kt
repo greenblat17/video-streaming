@@ -7,10 +7,10 @@ import java.util.*
 
 interface StorageService {
 
-    fun save(video: PartData.FileItem, videoBytes: ByteArrayInputStream, uuid: UUID)
+    fun save(fileName: String, videoBytes: ByteArrayInputStream, uuid: UUID)
 
-    fun getInputStream(uuid: UUID, offset: Long, length: Long): InputStream
+    fun getInputStream(fileName: String, offset: Long, length: Long): InputStream
 
-    fun getObject(uuid: String): ByteArray
+    fun getObject(fileName: String): ByteArray
 
 }
