@@ -11,4 +11,6 @@ interface StorageService {
 
     fun getInputStream(uuid: UUID, offset: Long, length: Long): InputStream
 
+    fun getObject(uuid: String): ByteArray
+
 }

@@ -1,6 +1,5 @@
 package com.rbi.service.impl
 
-import com.rbi.config.MinioConfig
 import com.rbi.config.MinioProperties
 import com.rbi.service.StorageService
 import io.ktor.http.content.*
@@ -39,12 +38,12 @@ class MinioStorageService(private val minioClient: MinioClient) : StorageService
         )
     }
 
-    fun getObject(filename: String): ByteArray {
+    override fun getObject(uuid: String): ByteArray {
         return minioClient.getObject(
             GetObjectArgs
                 .builder()
                 .bucket(MinioProperties.BUCKET_NAME)
-                .`object`("$filename.mp4")
+                .`object`("$uuid.mp4")
                 .build()
         ).readAllBytes()
     }
