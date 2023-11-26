@@ -10,11 +10,23 @@ import com.rbi.util.Range
 import io.ktor.http.content.*
 import java.io.ByteArrayInputStream
 import java.util.*
+import kotlin.collections.ArrayList
 
 class DefaultVideoService(
     private val storageService: MinioStorageService,
     private val fileMetadataRepository: FileMetadataRepository
 ) : VideoService {
+
+    suspend fun getAllFiles(): List<String> {
+        val files = ArrayList<String>()
+
+        val metadatas = fileMetadataRepository.findALl()
+        metadatas.forEach {
+            files.add(it!!.id)
+        }
+
+        return files
+    }
 
     override suspend fun save(video: PartData.FileItem): UUID {
         val fileUUID = UUID.randomUUID()
