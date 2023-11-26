@@ -36,10 +36,6 @@ request
 
 <img alt="Upload Page" src="docs/upload.png">
 
-### Player page
-
-<img alt="PLayer" src="docs/player.png">
-
 ### Streaming video
 
 <img alt="Video Streaming" src="docs/stream.JPG">
