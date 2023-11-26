@@ -77,10 +77,11 @@ fun Route.videoRouting() {
             val part = form.readPart()
 
             if (part is PartData.FileItem) {
-                videoService.save(part)
+                call.respondRedirect("/video/upload")
+            } else {
+                call.respond(ThymeleafContent("error", model = emptyMap()))
             }
 
-            call.respondRedirect("/video/upload")
         }
 
     }
