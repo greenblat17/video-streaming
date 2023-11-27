@@ -11,6 +11,11 @@ request
 - H2 Database
 - MinIO
 
+## Features
+
+- Upload video to object storage
+- Stream video with chunks
+
 ## API Reference
 
 #### Upload video file
